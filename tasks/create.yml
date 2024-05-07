@@ -22,12 +22,8 @@
         when: ansible_os_family == "RedHat"
     become: true
 
-  - name: Refresh apt repos and install https repo support for Debian
+  - name: Refresh apt repos
     apt:
-      name:
-        - base-files
-        - apt-transport-https
-      state: present
       update_cache: true
     become: true
     when: ansible_os_family == "Debian"
