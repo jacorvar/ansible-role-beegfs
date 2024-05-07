@@ -35,9 +35,9 @@ beegfs_distro_vars:
       - "libbeegfs-ib"
 
   Debian:
-    beegfs_repo_url: "https://www.beegfs.io/release/latest-stable/dists/beegfs-deb9.list"
-    beegfs_repo_key: "https://www.beegfs.io/release/latest-stable/gpg/DEB-GPG-KEY-beegfs"
-    beegfs_repo_file: "/etc/apt/sources.list.d/beegfs_deb9.list"
+    beegfs_repo_url: "https://www.beegfs.io/release/latest-stable/dists/beegfs-{{ ansible_distribution_release }}.list"
+    beegfs_repo_key: "https://www.beegfs.io/release/latest-stable/gpg/GPG-KEY-beegfs"
+    beegfs_repo_file: "/etc/apt/sources.list.d/beegfs-{{ ansible_distribution_release }}.list"
     kernel_dev_pkg: "linux-headers"
     rdma_dev_pkgs:
       - "librdmacm-dev"
