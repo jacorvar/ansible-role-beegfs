@@ -15,16 +15,14 @@
 
 - name: Run management service setup script
   command: "/opt/beegfs/sbin/beegfs-setup-mgmtd -p {{ beegfs_mgmt_path }} -f"
-  args:
-    creates: "{{ beegfs_mgmt_path }}/originalNodeID"
   become: true
   notify: Restart BeeGFS mgmt service
 
-- name: Specify connInterfacesFile
+- name: Specify connAuthFile
   lineinfile:
     path: /etc/beegfs/beegfs-mgmtd.conf
-    regexp: "^connInterfacesFile"
-    line: "connInterfacesFile           = /etc/beegfs/connInterfacesFile"
+    regexp: "^connAuthFile"
+    line: "connAuthFile           = /etc/beegfs/connAuthFile"
   become: true
   notify: Restart BeeGFS mgmt service
 ...
