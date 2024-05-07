@@ -70,6 +70,7 @@ And a corresponding playbook as this (`beegfs.yml`):
         beegfs_interfaces: ["ib0"]
         beegfs_rdma: true
         beegfs_state: present
+        beegfs_connauthfile: ../connauthfile
     ...
 
 To create a cluster:
