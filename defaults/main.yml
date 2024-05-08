@@ -76,9 +76,9 @@ beegfs_mgmt_path: "/data/beegfs/beegfs_mgmtd"
 beegfs_mgmt_host:  # Example: "{{ groups['cluster_beegfs_mgmt'] | first }}"
 
 # Metadata storage options
-beegfs_meta_path: "/data/beegfs/beegfs_meta"
 beegfs_meta:
   - dev:  # /dev/sdb
+    path: "/data/beegfs/beegfs_meta"
     filesystem_opts: "-i 2048 -I 512 -J size=400 -Odir_index,filetype"
     mount_opts: "onoatime,nodiratime,user_xattr"
     force_format: false
