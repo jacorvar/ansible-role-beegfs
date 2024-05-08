@@ -55,6 +55,9 @@ beegfs_repo_file: "{{ beegfs_distro_vars[ansible_os_family]['beegfs_repo_file'] 
 # Define to enable support for BeeGFS data transport over RDMA (IB, OPA, RoCE)
 beegfs_rdma: true
 
+# Whether to format disks
+beegfs_force_format: false
+
 # Storage server options
 beegfs_oss_path_prefix: "/data/beegfs/beegfs_oss"
 beegfs_oss:
@@ -63,7 +66,6 @@ beegfs_oss:
     path:  # specifying dev overrides path
     filesystem_opts: "-f -b size=4096 -d su=256k,sw=10 -l version=2,su=256k -i size=512"
     mount_opts: "noatime,nodiratime,logbufs=8,logbsize=256k,largeio,inode64,swalloc,allocsize=131072k,uqnoenforce,gqnoenforce"
-    force_format: false
     fstype: "xfs"
 beegfs_oss_tunable: "{{ beegfs_oss | selectattr('dev', 'defined') | map(attribute='dev') | map('relpath', '/dev/' ) | list }}"
 # Whether to support multiple ports per OSS:
@@ -81,7 +83,6 @@ beegfs_meta:
     path: "/data/beegfs/beegfs_meta"
     filesystem_opts: "-i 2048 -I 512 -J size=400 -Odir_index,filetype"
     mount_opts: "onoatime,nodiratime,user_xattr"
-    force_format: false
     fstype: "ext4"
 
 # Client mount configs
