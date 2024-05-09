@@ -95,11 +95,19 @@
   become: true
   notify: Restart BeeGFS storage service
 
-- name: Specify connInterfacesFile
+- name: Copy connAuthFile from first master server (mgmt)
+  synchronize:
+    mode: push
+    src: "{{ beegfs_connauthfile_path }}"
+    dest: "{{ beegfs_connauthfile_path }}"
+  delegate_to: "{{ groups['master'][0] }}"
+  become: true
+
+  - name: Specify connAuthFile
   lineinfile:
     path: "/etc/beegfs/{{ oss_port }}.d/beegfs-storage.conf"
-    regexp: "^connInterfacesFile"
-    line: "connInterfacesFile           = /etc/beegfs/connInterfacesFile"
+    regexp: "^connAuthFile"
+    line: "connAuthFile           = {{ beegfs_connauthfile_path }}"
   become: true
-  notify: Restart BeeGFS storage service
+  notify: Restart BeeGFS meta service
 ...
