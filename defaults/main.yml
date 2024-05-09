@@ -55,6 +55,9 @@ beegfs_repo_file: "{{ beegfs_distro_vars[ansible_os_family]['beegfs_repo_file'] 
 # Define to enable support for BeeGFS data transport over RDMA (IB, OPA, RoCE)
 beegfs_rdma: true
 
+# Define path to authentication file
+beegfs_connauthfile_path: "/etc/beegfs/connauthfile"
+
 # Whether to format disks
 beegfs_force_format: false
 
