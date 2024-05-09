@@ -14,7 +14,9 @@
   notify: Restart BeeGFS mgmt service
 
 - name: Run management service setup script
-  command: "/opt/beegfs/sbin/beegfs-setup-mgmtd -p {{ beegfs_mgmt_path }} -f"
+  command: 
+    cmd: "/opt/beegfs/sbin/beegfs-setup-mgmtd -p {{ beegfs_mgmt_path }} -f"
+    creates: "{{ beegfs_mgmt_path }}/originalNodeID"
   become: true
   notify: Restart BeeGFS mgmt service
 
