@@ -109,5 +109,5 @@
     regexp: "^connAuthFile"
     line: "connAuthFile           = {{ beegfs_connauthfile_path }}"
   become: true
-  notify: Restart BeeGFS meta service
+  notify: Restart BeeGFS storage service
 ...
