@@ -18,11 +18,16 @@
   become: true
   notify: Restart BeeGFS mgmt service
 
+- name: Create connAuthFile
+  command: 
+    cmd: "dd if=/dev/random of={{ beegfs_connauthfile_path }} bs=128 count=1"
+    creates: "{{ beegfs_connauthfile_path }}"
+  
 - name: Specify connAuthFile
   lineinfile:
     path: /etc/beegfs/beegfs-mgmtd.conf
     regexp: "^connAuthFile"
-    line: "connAuthFile           = /etc/beegfs/connAuthFile"
+    line: "connAuthFile           = {{ beegfs_connauthfile_path }}"
   become: true
   notify: Restart BeeGFS mgmt service
 ...
