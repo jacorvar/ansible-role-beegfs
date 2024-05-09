@@ -78,7 +78,7 @@ beegfs_oss_multi_port: true
 
 # Management options
 beegfs_mgmt_path: "/data/beegfs/beegfs_mgmtd"
-beegfs_mgmt_host:  # Example: "{{ groups['cluster_beegfs_mgmt'] | first }}"
+beegfs_mgmt_host:  "{{ groups['master'] | first }}"
 
 # Metadata storage options
 beegfs_meta:
