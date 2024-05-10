@@ -81,7 +81,7 @@
         - { name: "beegfs-admon.service", enable: "{{ beegfs_enable.admon }}" }
     - name: Stop BeeGFS storage services
       vars:
-        service_name: "beegfs-storage@{{ item.port }}.service"
+        service_name: "beegfs-storage.service"
       service:
         name: "{{ service_name }}"
         state: stopped
@@ -169,7 +169,7 @@
 
 - name: Start and enable BeeGFS storage services
   service:
-    name: "beegfs-storage@{{ item.port }}"
+    name: "beegfs-storage"
     enabled: true
     state: started
   become: true
