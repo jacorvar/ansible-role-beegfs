@@ -92,4 +92,13 @@
     line: "connAuthFile           = {{ beegfs_connauthfile_path }}"
   become: true
   notify: Restart BeeGFS storage service
+
+- name: Enable quota enforcement
+  lineinfile:
+    path: "/etc/beegfs/beegfs-storage.conf"
+    regexp: "^quotaEnableEnforcement"
+    insertafter: "^logType"
+    line: "quotaEnableEnforcement           = true"
+  become: true
+  notify: Restart BeeGFS storage service
 ...
