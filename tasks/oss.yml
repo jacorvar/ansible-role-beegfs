@@ -55,9 +55,7 @@
   command: |
     /opt/beegfs/sbin/beegfs-setup-storage -f \
     -p {{ oss_path }} {{ oss_replace }} \
-    -m {{ beegfs_mgmt_host }} \
-    -c /etc/beegfs/beegfs-storage.conf \
-    -S {{ inventory_hostname }}-{{ oss_port }} \
+    -m {{ beegfs_mgmt_host }}
   args:
     creates: "{{ oss_path }}/originalNodeID"
   become: true
