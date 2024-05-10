@@ -46,4 +46,13 @@
     line: "connAuthFile           = {{ beegfs_connauthfile_path }}"
   become: true
   notify: Restart BeeGFS client service
+
+- name: Enable tracking quota
+  lineinfile:
+    path: /etc/beegfs/beegfs-client.conf
+    regexp: "^quotaEnabled"
+    insertafter: "^logType"
+    line: "quotaEnabled           = true"
+  become: true
+  notify: Restart BeeGFS client service
 ...
