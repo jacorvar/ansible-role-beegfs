@@ -57,7 +57,7 @@
   delegate_to: "{{ groups['master'][0] }}"
   become: true
 
-  - name: Specify connAuthFile
+- name: Specify connAuthFile
   lineinfile:
     path: /etc/beegfs/beegfs-meta.conf
     regexp: "^connAuthFile"
