@@ -10,22 +10,6 @@
   set_fact:
     mounted_devs: "{{ ansible_mounts | map(attribute='device') | list }}"
 
-- name: Create storage config dirs
-  file:
-    path: "/etc/beegfs/{{ oss_port }}.d/"
-    state: directory
-  become: true
-  notify: Restart BeeGFS storage service
-
-- name: Add template beegfs-storage conf
-  copy:
-    src: "/etc/beegfs/beegfs-storage.conf"
-    dest: "/etc/beegfs/{{ oss_port }}.d/beegfs-storage.conf"
-    remote_src: true
-    force: false
-  become: true
-  notify: Restart BeeGFS storage service
-
 - name: Prepare storage devices
   block:
     - name: Stat the OSS device
