@@ -148,12 +148,6 @@
     loop_var: client_item
   when: beegfs_enable.client | default(false) | bool
 
-- name: Create connInterfacesFile
-  template:
-    src: connInterfacesFile.j2
-    dest: /etc/beegfs/connInterfacesFile
-  become: true
-
 - name: Start and enable BeeGFS server services
   service:
     name: "{{ item.name }}"
